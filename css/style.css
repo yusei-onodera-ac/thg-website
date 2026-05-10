@@ -1,0 +1,469 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+
+:root {
+    --bg-color: #fcfcfc; /* 真っ白ではなく、ほんの少し温かみのある白 */
+    --text-color: #050505; /* 深い黒 */
+    --font-heading: 'Oswald', Impact, 'Arial Black', sans-serif;
+    --font-text: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Arial, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-text);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ＝ ピル型ナビゲーション（HUMAN MADE風） ＝ */
+.global-header {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.pill-nav {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 12px 40px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.pill-nav a {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+}
+
+.pill-nav a:hover { opacity: 0.5; }
+
+/* ＝ ロゴ・ハンバーガーメニュー・右側アイコン ＝ */
+.header-sides {
+    position: fixed;
+    top: 40px;
+    width: 100%;
+    padding: 0 4vw;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 999;
+}
+.header-sides > * { pointer-events: auto; }
+.side-logo { font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 0.05em; }
+.side-icons { display: flex; gap: 1rem; }
+.icon-circle { 
+    width: 40px; height: 40px; border-radius: 50%; background: #fff; 
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03); font-weight: bold; font-size: 0.8rem;
+}
+
+/* ＝ レイアウト ＝ */
+.container { max-width: 1200px; margin: 0 auto; padding: 150px 4vw; }
+
+/* ＝ タイポグラフィ ＝ */
+/* 巨大タイトル (浮かび上がる文字) */
+.giant-logo {
+    font-family: var(--font-heading);
+    /* 文字数が増えたので、画面幅に対する割合(15vw → 9vw)を少し下げて最適化 */
+    font-size: clamp(3rem, 9vw, 10rem); 
+    white-space: nowrap; /* ★ これで絶対に改行されなくなります */
+    text-align: center; 
+    line-height: 0.85; 
+    margin: 15vh 0 35vh; 
+    letter-spacing: 0.02em; 
+    position: relative; 
+    z-index: 10;
+}
+.giant-logo.white { color: #fff; }
+
+.statement-text {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.6;
+    letter-spacing: -0.03em;
+    max-width: 1000px;
+    margin: 0 auto 20vh;
+}
+
+/* ＝ スプリットレイアウト (CULTIVATE CULTURE風) ＝ */
+/* ＝ スプリットセクション（被りを絶対に防ぐGridレイアウト） ＝ */
+.split-section { 
+    display: grid; 
+    grid-template-columns: 4fr 6fr; /* 左40% : 右60% の完璧な分割 */
+    gap: 5vw; 
+    margin-bottom: 20vh; 
+    align-items: start;
+    width: 100%;
+}
+.split-title { 
+    font-family: var(--font-heading); 
+    font-size: clamp(3rem, 5vw, 5.5rem); 
+    line-height: 0.9; 
+    margin: 0;
+    word-break: keep-all;
+    overflow-wrap: break-word; /* 長い英単語の突き抜けを強制ストップ */
+}
+.split-content { 
+    font-size: 1.1rem; 
+    line-height: 2.2; 
+    font-weight: 500; 
+    width: 100%; 
+    padding-top: 0; 
+}
+
+.split-content p { margin-bottom: 2rem; }
+
+@media (max-width: 768px) {
+    .pill-nav { gap: 1rem; padding: 10px 20px; }
+    .pill-nav a { font-size: 0.7rem; }
+    .split-section { flex-direction: column; gap: 3rem; }
+    .split-title, .split-content { width: 100%; }
+}
+
+/* ＝ エディトリアル画像配置（写真用） ＝ */
+.editorial-image-wrap {
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 20vh;
+    background-color: #eee; /* 読み込み前のプレースホルダー */
+}
+
+.parallax-img {
+    width: 100%;
+    height: 120%; /* パララックス用に少し大きくする */
+    object-fit: cover;
+    margin-top: -10%; /* 初期位置調整 */
+    filter: grayscale(20%) contrast(1.1); /* 少し渋いトーンに加工 */
+}
+
+/* ＝ リストデザイン（PROJECTS, BLOG用） ＝ */
+.clean-list {
+    list-style: none;
+    border-top: 2px solid var(--text-color);
+}
+
+.clean-list li {
+    border-bottom: 1px solid #ddd;
+}
+
+.clean-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    transition: padding-left 0.3s;
+}
+
+.clean-list a:hover {
+    padding-left: 1.5rem;
+}
+
+.list-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.list-meta {
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: #888;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #FAFAFA;
+    --text-color: #111111;
+    --header-bg: rgba(255, 255, 255, 0.8);
+    --border-color: #DDDDDD;
+    --font-heading: 'Oswald', sans-serif;
+    --font-text: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-text);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+/* ＝ 最初のスタイルに戻したヘッダー ＝ */
+header.global-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--header-bg);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    padding: 1.2rem 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.4s ease;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+}
+
+nav a {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-color);
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #000;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+nav a:hover::after { transform: scaleX(1); }
+
+/* ＝ マウスストーカー ＝ */
+#cursor-stalker {
+    position: fixed; top: 0; left: 0; width: 10px; height: 10px;
+    background-color: var(--text-color); border-radius: 50%; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%); mix-blend-mode: difference; transition: width 0.3s, height 0.3s;
+}
+#cursor-stalker.active { mix-blend-mode: normal; background-color: var(--bg-color); width: 80px; height: 80px; border: 1px solid rgba(0,0,0,0.1); }
+
+/* ＝ レイアウト ＝ */
+.container { max-width: 1400px; margin: 0 auto; padding: 0 4vw 20vh; }
+.container-small { max-width: 900px; margin: 0 auto; padding: 0 4vw 20vh; }
+
+/* 3. タイポグラフィとレイアウトの最適化 */
+    .giant-logo {
+        font-size: clamp(1.5rem, 11vw, 4rem); /* スマホの狭い画面でもはみ出ないように調整 */
+        margin: 5vh 0 10vh;
+    }
+.giant-logo span { display: inline-block; }
+
+/* ＝ 文字被りを防ぐスプリットレイアウトの修正 ＝ */
+/* ＝ スプリットセクション（文字被りの完全解消） ＝ */
+.split-section { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    gap: 5vw; /* 隙間を確保 */
+    margin-bottom: 20vh; 
+    width: 100%; /* はみ出し防止 */
+}
+.split-title { 
+    font-family: var(--font-heading); 
+    font-size: clamp(3rem, 6vw, 5.5rem); 
+    width: 40%; /* 左側は40%固定 */
+    line-height: 0.9; 
+    word-break: keep-all; 
+}
+.split-content { 
+    width: 50%; /* ★60%から50%に変更！これが被りの原因でした */
+    font-size: 1.1rem; 
+    line-height: 2.2; 
+    font-weight: 500; 
+    padding-top: 0; 
+}
+
+@media (max-width: 900px) {
+    .split-section { flex-direction: column; gap: 3rem; margin-bottom: 20vh; }
+    .split-title, .split-content { width: 100%; }
+}
+
+/* ＝ フッターのデザイン ＝ */
+.global-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 4vw;
+    margin-top: 10vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #666;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+}
+.footer-links a { margin-right: 2rem; text-decoration: none; color: inherit; transition: 0.3s; }
+.footer-links a:hover { color: var(--text-color); }
+
+/* カード & リスト */
+.grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2vw; margin-bottom: 30vh; }
+.tech-card { background: #fff; border: 1px solid var(--border-color); padding: 60px 40px; border-radius: 4px; text-align: center; }
+.tech-marquee { background: #000; color: #fff; padding: 20px 0; overflow: hidden; white-space: nowrap; font-family: var(--font-mono); font-weight: bold; }
+.clean-list { border-top: 2px solid var(--text-color); margin-top: 5vh; list-style: none;}
+.clean-list a { display: flex; justify-content: space-between; align-items: center; padding: 3rem 0; border-bottom: 1px solid #ddd; text-decoration: none; color: inherit; transition: 0.3s; }
+.clean-list a:hover { padding-left: 2rem; opacity: 0.6; }
+
+/* =========================================
+   MOBILE RESPONSIVE (本気のスマホ特化版)
+========================================= */
+/* デフォルトではスマホ用要素を隠す */
+.mobile-menu-btn, .mobile-overlay-nav { display: none; }
+
+@media (max-width: 900px) {
+    /* ＝ 1. アプリライクなヘッダー ＝ */
+    .desktop-nav { display: none; /* PCメニューを消す */ }
+    
+    .global-header {
+        flex-direction: row; /* 横並びに戻す */
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5vw;
+        background: rgba(250, 250, 250, 0.9);
+        backdrop-filter: blur(20px);
+    }
+
+    /* ＝ 2. ハンバーガーボタン ＝ */
+    .mobile-menu-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: none;
+        z-index: 1001; /* 一番手前 */
+        cursor: pointer;
+    }
+    .mobile-menu-btn span {
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: var(--text-color);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        margin-left: auto;
+    }
+    /* ボタンが開いた時の「×」印アニメーション */
+    .mobile-menu-btn.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+    .mobile-menu-btn.open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); width: 30px; }
+
+    /* ＝ 3. フルスクリーン・オーバーレイメニュー ＝ */
+    .mobile-overlay-nav {
+        display: flex;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100dvh; /* dvhでスマホのアドレスバー問題を解決 */
+        background-color: var(--bg-color);
+        z-index: 1000;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+    .mobile-overlay-nav.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .mobile-overlay-nav nav {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    .mobile-overlay-nav a {
+        font-family: var(--font-heading);
+        font-size: 3.5rem; /* 大迫力のタイポグラフィ */
+        line-height: 1;
+        text-decoration: none;
+        color: var(--text-color);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .mobile-overlay-nav.active a {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    /* メニューが順番に出るディレイ */
+    .mobile-overlay-nav.active a:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-overlay-nav.active a:nth-child(2) { transition-delay: 0.15s; }
+    .mobile-overlay-nav.active a:nth-child(3) { transition-delay: 0.2s; }
+    .mobile-overlay-nav.active a:nth-child(4) { transition-delay: 0.25s; }
+    .mobile-overlay-nav.active a:nth-child(5) { transition-delay: 0.3s; }
+
+    .mobile-overlay-footer {
+        position: absolute;
+        bottom: 5vh;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: #888;
+    }
+
+    /* ＝ 4. ネイティブアプリ風 横スワイプカルーセル (Cards) ＝ */
+   /* ＝ 4. カードを縦に積む (最も直感的で使いやすいUIへ修正) ＝ */
+    .grid-cards {
+        display: flex; /* グリッドを解除しフレックスへ */
+        flex-direction: column; /* ★縦並びに強制 */
+        gap: 5vw; /* 縦の間隔 */
+        padding-bottom: 0; /* 横スワイプ用の余白を消す */
+        margin-right: 0; /* マージンを戻す */
+        padding-right: 0; /* パディングを戻す */
+        overflow-x: visible; /* 横スクロールを解除 */
+        scroll-snap-type: none; /* スナップ効果を解除 */
+    }
+    .grid-cards::-webkit-scrollbar { display: none; }
+    
+    .tech-card {
+        width: 100%; /* フル幅に */
+        min-width: 0; /* min-widthをリセット */
+        flex-shrink: 1; /* 縮むように */
+        scroll-snap-align: none; /* スナップを解除 */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04); /* 少し影をつけてカードを目立たせる */
+    }
+
+    /* ＝ 5. 全体のスマホ最適化調整 ＝ */
+    .container, .container-small { padding: 100px 5vw 10vh; }
+    .giant-logo { font-size: clamp(3.5rem, 15vw, 5rem); margin: 5vh 0 10vh; }
+    .split-section { flex-direction: column; gap: 1.5rem; margin-bottom: 15vh; }
+    .split-title { width: 100%; font-size: clamp(2.5rem, 12vw, 4rem); }
+    .split-content { width: 100%; font-size: 1.05rem; padding-top: 0; }
+    .clean-list a { flex-direction: column; align-items: flex-start; padding: 1.5rem 0; gap: 1rem; }
+    #cursor-stalker { display: none !important; }
+    .hero-bg-container { inset: 0 !important; }
+    .hero-bg-img { width: 100% !important; height: 100% !important; top: 0 !important; left: 0 !important; }
+}
