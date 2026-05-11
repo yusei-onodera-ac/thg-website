@@ -1,6 +1,6 @@
-# THG Inc. | Tokyo Hack Group Corporate Site
+# THG  | Tokyo Hack Group Corporate Site
 
-![THG Inc. Preview](https://via.placeholder.com/1200x630.png?text=THG+INC.+Corporate+Site) **THG Inc. (Tokyo Hack Group)** の公式コーポレートサイトのソースコードです。
+![THG Inc. Preview](https://via.placeholder.com/1200x630.png?text=THG+INC.+Corporate+Site) **THG  (Tokyo Hack Group)** の公式サイトのソースコードです。
 ハッカソンという極限の環境下で、圧倒的なスピードと堅牢なアーキテクチャ（DDD, オブジェクト指向）を武器に戦うエンジニア集団のアイデンティティを、洗練されたタイポグラフィとシームレスなアニメーションで表現しています。
 
 🔗 **Live Demo:** [https://tokyo-hack-group.com](https://tokyo-hack-group.com) ---
