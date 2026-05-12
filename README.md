@@ -6,7 +6,7 @@
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
+- **Frontend**: HTML5, CSS3, JavaScript
 - **Backend**: PHP 8.x
 - **Animation**: [GSAP](https://gsap.com/) (ScrollTrigger)
 - **Smooth Scroll**: [Lenis](https://lenis.studiofreight.com/)
