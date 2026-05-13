@@ -497,6 +497,7 @@ a:focus-visible {
     outline-offset: 4px;
 }
 
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation: none !important;
@@ -504,3 +505,18 @@ a:focus-visible {
         scroll-behavior: auto !important;
     }
 }
+
+body {
+  cursor: url('custom-pointer.png'), auto;
+}
+
+/* 特定のリンクにホバーした時だけ別のカーソルにする */
+a:hover {
+  cursor: url('hover-pointer.png'), pointer;
+}
+body, html, #app {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
